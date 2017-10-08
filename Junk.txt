@@ -1,0 +1,238 @@
+/*Tumbler {
+    x: 10
+    y: 200;
+    width: parent.width - 30;
+    height: 100;
+    TumblerColumn {
+        id: firstModel;
+        width: parent.width / 3 - 10;
+        model: ["Firearms Basic", "Constitution 1", "Physique 1", "Agility 1", "Leadership 1", "Martial Arts"];
+        on__CurrentIndexChanged: {
+            var current = firstModel.currentIndex;
+            switch(current)
+            {
+            case 0:
+            secondModel.model = ["Skirmishing", "Marksmanship"];
+                break;
+            case 1:
+            secondModel.model = ["Constitution 2"];
+                break;
+            case 2:
+            secondModel.model = ["Physique 2"];
+                break;
+            case 3:
+            secondModel.model = ["Aglity 2"];
+                break;
+            case 4:
+            secondModel.model = ["Inspire", "Leadership 2"];
+                break;
+            case 5:
+            secondModel.model = ["Blade Specialty"];
+                break;
+            }
+    }
+
+    }
+
+    TumblerColumn {
+        id: secondModel;
+        width: parent.width / 3 - 20;
+
+    }
+
+    TumblerColumn {
+        id: thirdModel;
+        width: parent.width / 3 - 20;
+
+    }
+
+}*/
+
+/*MessageDialog {
+    id: duplicateDialog
+    title: "Duplicate";
+    text: "You already have this skill!";
+}*/
+
+/*Tumbler {
+    id: secondModel;
+    x: parent.width / 3;
+    y: 200;
+    width: parent.width / 3;
+    height: 100;
+    onCurrentIndexChanged: {
+        var current = secondModel.currentIndex;
+        var firstCurrent = firstModel.currentIndex;
+        switch(current)
+        {
+        case 0:
+            thirdModel.model = ["None"];
+            break;
+        case 1:
+            if(firstCurrent == 0)
+            {
+            thirdModel.model = ["None", "Rifle Specialty", "Handgun Specialty", "Automatic Specialty"];
+            }
+            if(firstCurrent == 1)
+            {
+            thirdModel.model = ["None", "Constituion 3"];
+            }
+            if(firstCurrent == 2)
+            {
+            thirdModel.model = ["None", "Physique 3"];
+            }
+            if(firstCurrent == 3)
+            {
+            thirdModel.model = ["None", "Aglity 3"];
+            }
+            if(firstCurrent == 4)
+            {
+            thirdModel.model = ["None"];
+            }
+            if(firstCurrent == 5)
+            {
+            thirdModel.model = ["None"];
+            }
+            break;
+        case 2:
+            if(firstCurrent == 0)
+            {
+            thirdModel.model = ["None", "Sharp Shooting", "Underfire Aiming"];
+            }
+            if(firstCurrent == 1)
+            {
+            thirdModel.model = ["None"];
+            }
+            if(firstCurrent == 2)
+            {
+            thirdModel.model = ["None"];
+            }
+            if(firstCurrent == 3)
+            {
+            thirdModel.model = ["None", "Dodger"];
+            }
+            if(firstCurrent == 4)
+            {
+            thirdModel.model = ["None", "Chain of Command 1", "Leadership 3"];
+            }
+            if(firstCurrent == 5)
+            {
+            thirdModel.model = ["None"];
+            }
+            break;
+        }
+}
+}
+
+Tumbler {
+    id: thirdModel;
+    x: (parent.width / 3) * 2;
+    y: 200;
+    width: parent.width / 3;
+    height: 100;
+}*/
+
+var current = firstModel.currentIndex;
+switch(current)
+{
+case 0:
+secondModel = ["None", "Skirmishing", "Marksmanship"];
+thirdModel = ["None", "Rifle Speicalty", "Quick Draw Shooting", "Automatic Specialty"];
+    break;
+case 1:
+secondModel = ["None", "Constitution 2"];
+thirdModel = ["None"];
+    break;
+case 2:
+secondModel = ["None", "Physique 2"];
+thirdModel = ["None"];
+    break;
+case 3:
+secondModel = ["None", "Aglity 2"];
+thirdModel = ["None"];
+    break;
+case 4:
+secondModel = ["None", "Inspire", "Leadership 2"];
+thirdModel = ["None"];
+    break;
+case 5:
+secondModel = ["None", "Blade Specialty"];
+thirdModel = ["None"];
+    break;
+}
+
+property var secondModel: [["None", "Skirmishing", "Marksmanship"], ["None", "Constitution 2"], ["None", "Physique 2"], ["None", "Aglity 2"], ["None", "Inspire", "Leadership 2"], ["None", "Blade Specialty"]];
+
+if(skills[0] == firstSkills[a] && skills[1] == secondSkills[a] && skills[2] == thirdSkills[a] && skills[3] == fourthSkills[a])
+{
+    alert.running = true;
+    parent.text = "You already have this skill!";
+    duplicate = true;
+    break;
+}
+
+if(secondSkills[current] == "None")
+{
+    numPoints = numPoints - 5;
+}else if(thirdSkills[current] == "None")
+{
+    numPoints = numPoints - 10;
+}else if(fourthSkills[current] == "None")
+{
+    numPoints = numPoints - 15;
+}else{
+    numPoints = numPoints - 20;
+}
+firstSkills.splice(current, 1);
+secondSkills.splice(current, 1);
+thirdSkills.splice(current, 1);
+
+
+
+RoundButton {
+    id: creator;
+    width: 50;
+    height: 50
+    y: parent.height - 60;
+    x: parent.width - 60;
+    text: "+";
+    MouseArea {
+        id: clickArea;
+        anchors.bottomMargin: 0
+        anchors.fill: parent;
+        onClicked: {
+            createClass.visible = true;
+            createLoadout.visible = true;
+            armyList.visible = true;
+        }
+    }
+    contentItem: Text{
+        text: parent.text;
+        opacity: 1.0
+        font.pointSize: 20;
+        color: "#ffffff";
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
+        elide: Text.ElideRight
+    }
+
+    background: Rectangle{
+        color: "#4BB441"
+        radius: width * 0.5
+    }
+}
+
+function create()
+{
+//return mainfunction.createFile();
+}
+
+/*width: {
+    if(Screen.width != 1680)
+    {
+        Screen.width;
+    }
+    else{
+        375; //414, 375, 320 Debug
+    }
+}*/
