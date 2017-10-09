@@ -1,26 +1,9 @@
-import QtQuick 2.9
+import QtQuick 2.0
 import QtQuick.Controls 2.2
 
 Item {
-    property var classModel: ["Choose the class"];
-    property var loadoutModel: ["Choose the loadout"];
-    property var itemModel: [];
-    property int numPoints: 0;
-    property int numItems: 0;
-    height: 626
-
-    function getItems()
-    {
-        for(var a = 0; a < mainfunction.getClassListLength(); a++)
-        {
-            classModel[a + 1] = mainfunction.getClassName(a);
-        }
-
-        for(var a = 0; a < mainfunction.getLoadoutListLength(); a++)
-        {
-            loadoutModel[a + 1] = mainfunction.getLoadoutName(a);
-        }
-    }
+    property var characterModel: ["Choose the character"];
+    property var armyModel: [];
 
     TextField {
         id: nameText;
@@ -33,136 +16,29 @@ Item {
     }
 
     Tumbler {
-        id: classList;
+        id: characterList
         x: 10
         y: 135
-        width: parent.width - 20;
-        height: 114
-        model: classModel;
-        onCurrentIndexChanged: {
-            if(currentIndex == 0)
-            {
-                previewClass.enabled = false;
-                addClass.enabled = false;
-            }else{
-                previewClass.enabled = true;
-                addClass.enabled = true;
-            }
-        }
+        width: parent.width - 20
+        height: 103
+        model: characterModel;
     }
 
     Button {
-        id: addClass
+        id: addCharacter
         x: 10
-        y: 255
-        width: (parent.width / 2) - 10;
-        height: 33
-        text: "Add Class";
-        onClicked: {
-        itemModel[numItems] = "Class: " + classModel[classList.currentIndex];
-        itemsList.model = itemModel;
-        numItems = numItems + 1;
-        }
-    }
-
-    Button {
-        id: previewClass;
-        x: (parent.width / 2) + 10;
-        y: 255;
-        width: (parent.width / 2) - 20;
-        height: 33;
-        text: "Preview Class";
-        onClicked: {
-            isArmyPreview = true;
-            mainViews.source = "ClassPreview.qml";
-            mainViews.item.setName(classModel[classList.currentIndex]);
-            topTextbar.textValue = "Class Preview";
-        }
+        y: 244;
+        width: parent.width - 20;
+        text: "Add Character";
     }
 
     Tumbler {
-        id: loadoutList;
+        id: armyList
         x: 10
         y: 290
-        width: parent.width - 20;
-        height: 114
-        model: loadoutModel;
-        onCurrentIndexChanged: {
-            if(currentIndex == 0)
-            {
-                previewLoadout.enabled = false;
-                addLoadout.enabled = false;
-            }else{
-                previewLoadout.enabled = true;
-                addLoadout.enabled = true;
-            }
-        }
-    }
-
-    Button {
-        id: addLoadout
-        x: 10
-        y: 410
-        width: (parent.width / 2) - 10;
-        height: 33
-        text: "Add Loadout";
-        onClicked: {
-        itemModel[numItems] = "Loadout: " + loadoutModel[loadoutList.currentIndex];
-        itemsList.model = itemModel;
-        numItems = numItems + 1;
-        }
-    }
-
-    Button {
-        id: previewLoadout;
-        x: (parent.width / 2) + 10;
-        y: 410;
-        width: (parent.width / 2) - 20;
-        height: 33;
-        text: "Preview Loadout";
-        onClicked: {
-            isArmyPreview = true;
-            mainViews.source = "LoadoutPreview.qml";
-            mainViews.item.setName(loadoutModel[loadoutList.currentIndex]);
-            topTextbar.textValue = "Loadout Preview";
-        }
-    }
-
-    Tumbler {
-        id: itemsList
-        x: 10
-        y: 455
-        width: (parent.width / 2) - 10;
-        height: 84
-        model: itemModel;
-    }
-
-    Button {
-        id: previewItem
-        x: (parent.width / 2) + 10;
-        y: 460
-        width: (parent.width / 2) - 10;
-        height: 33
-        text: "Preview";
-    }
-
-    Button {
-        id: deleteItem
-        x: (parent.width / 2) + 10;
-        y: 506
-        width: (parent.width / 2) - 10;
-        height: 33
-        text: "Delete Item";
-    }
-
-    Label {
-        id: pointLabel;
-        x: 8
-        y: 565
-        width: 565
-        height: 52
-        text: "Total point: " + numPoints;
-        font.pointSize: 20;
+        width: parent.width - 20
+        height: 103
+        model: armyModel;
     }
 
     RoundButton {
@@ -183,7 +59,7 @@ Item {
                     return;
                 }
                 mainfunction.outputFile();
-                mainViews.source = "allArmySelector.qml";
+                mainViews.source = "allArmyView.qml";
                 topTextbar.textValue = "Choose the armies you want.";
                 pointLabel.visible = false;
             }

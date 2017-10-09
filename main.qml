@@ -7,7 +7,7 @@ ApplicationWindow { //This is the Main qml file. This is the main viewer. This c
     width: 375;
     height: 640;
     property bool isLoaded: false;
-    property bool isArmyPreview: false;
+    property bool isCharacterPreview: false;
 
     Rectangle {
         id: background;
@@ -67,32 +67,36 @@ ApplicationWindow { //This is the Main qml file. This is the main viewer. This c
                 {
                     mainViews.source = "allLoadoutView.qml";
                     topTextbar.textValue = "Loadout";
+                }else if(mainViews.source == "qrc:/Character.qml")
+                {
+                    mainViews.source = "allCharacterView.qml";
+                    topTextbar.textValue = "Character";
                 }else if(mainViews.source == "qrc:/Army.qml")
                 {
                     mainViews.source = "allArmyView.qml"
                     topTextbar.textValue = "Choose the armies you want."
-                }else if(mainViews.source == "qrc:/allArmyView.qml")
+                }else if(mainViews.source == "qrc:/Army.qml")
                 {
-                    mainViews.source = "allArmySelector.qml";
+                    mainViews.source = "allArmyView.qml";
                     topTextbar.textValue = "Choose the armies you want.";
                 }else if(mainViews.source == "qrc:/ClassPreview.qml"){
-                    if(isArmyPreview == true)
+                    if(isCharacterPreview == true)
                     {
-                        mainViews.source = "Army.qml";
+                        mainViews.source = "Character.qml";
                         mainViews.item.getItems();
                         topTextbar.textValue = "Create Army";
-                        isArmyPreview = false;
+                        isCharacterPreview = false;
                     }else{
                     mainViews.source = "allClassView.qml";
                     topTextbar.textValue = "Class";
                     }
                 }else if(mainViews.source == "qrc:/LoadoutPreview.qml"){
-                    if(isArmyPreview == true)
+                    if(isCharacterPreview == true)
                     {
-                        mainViews.source = "Army.qml";
+                        mainViews.source = "Character.qml";
                         mainViews.item.getItems();
                         topTextbar.textValue = "Create Army";
-                        isArmyPreview = false;
+                        isCharacterPreview = false;
                     }else{
                     mainViews.source = "allLoadoutView.qml";
                     topTextbar.textValue = "Loadout";

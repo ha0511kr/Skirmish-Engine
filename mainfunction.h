@@ -66,6 +66,16 @@ private:
     QList<QString> loadoutNameList;
     QString currentLoadout = "";
     QString documentFolder = QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation).at(0) + "/SkrmishEngine.xml"; //This is used to find the document folder. In iOS, document folder is the only place that can be used for storing data(in .xml).
+
+    std::map<QString, QList<QString>> characterInfo;
+    QList<QString> currentCharacterList;
+    QList<QString> characterNameList;
+    QString currentCharacter = "";
+
+    std::map<QString, QList<QString>> armyInfo;
+    QList<QString> currentArmyList;
+    QList<QString> armyNameList;
+    QString currentArmy = "";
 };
 
 #endif // MAINFUNCTION_H

@@ -5,16 +5,18 @@
         <file>mainView.qml</file>
         <file>allLoadoutView.qml</file>
         <file>allArmyView.qml</file>
-        <file>allArmySelector.qml</file>
+        <file>allCharacterView.qml</file>
         <file>templateButton.qml</file>
         <file>Class.qml</file>
         <file>Loadout.qml</file>
         <file>templateClass.qml</file>
-        <file>Army.qml</file>
+        <file>Character.qml</file>
         <file>templateLoadout.qml</file>
         <file>ClassPreview.qml</file>
         <file>LoadoutPreview.qml</file>
         <file>ArmyPreview.qml</file>
         <file>templateArmy.qml</file>
+        <file>Army.qml</file>
+        <file>CharacterPreview.qml</file>
     </qresource>
 </RCC>

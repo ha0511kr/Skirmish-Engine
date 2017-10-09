@@ -39,11 +39,15 @@ Item {
                 {
                     mainViews.source = "Loadout.qml";
                     topTextbar.textValue = "Create Loadout";
-                }else if(mainViews.source == "qrc:/allArmySelector.qml")
+                }else if(mainViews.source == "qrc:/allCharacterView.qml")
+                {
+                    mainViews.source = "Character.qml";
+                    topTextbar.textValue = "Create Character";
+                    mainViews.item.getItems();
+                }else if(mainViews.source == "qrc:/allArmyView.qml")
                 {
                     mainViews.source = "Army.qml";
                     topTextbar.textValue = "Create Army";
-                    mainViews.item.getItems();
                 }
             }
         }
@@ -83,7 +87,7 @@ Item {
                 {
                     topTextbar.textValue = "Select the loadout";
                     mainViews.item.setMode(1);
-                }else if(mainViews.source == "qrc:/allArmySelector.qml")
+                }else if(mainViews.source == "qrc:/allArmyView.qml")
                 {
                     topTextbar.textValue = "Select the army";
                 }
@@ -126,7 +130,7 @@ Item {
                 {
                     topTextbar.textValue = "Select the loadout";
                     mainViews.item.setMode(2);
-                }else if(mainViews.source == "qrc:/allArmySelector.qml")
+                }else if(mainViews.source == "qrc:/allArmyView.qml")
                 {
                     topTextbar.textValue = "Select the army";
                 }
